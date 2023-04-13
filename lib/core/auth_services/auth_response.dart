@@ -1,0 +1,1 @@
+enum AuthResponse { success }
