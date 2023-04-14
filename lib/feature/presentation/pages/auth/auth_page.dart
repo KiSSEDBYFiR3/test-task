@@ -44,7 +44,7 @@ class _AuthPageState extends State<AuthPage> with WidgetsBindingObserver {
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     super.didChangeAppLifecycleState(state);
     final cubit = BlocProvider.of<AuthCubit>(context);
-    await cubit.authenticateByDynamicLink();
+    await cubit.authenticateByDynamicLinkCredential();
   }
 
   @override
@@ -78,7 +78,7 @@ class _AuthPageState extends State<AuthPage> with WidgetsBindingObserver {
                     ? Icons.light_mode_outlined
                     : Icons.dark_mode_outlined));
           })),
-      body: BlocConsumer<AuthCubit, AuthCubitState>(
+      body: BlocBuilder<AuthCubit, AuthCubitState>(
         builder: (context, state) {
           /// Инициализирую состояния
           if (state is InitState) {
@@ -142,7 +142,9 @@ class _AuthPageState extends State<AuthPage> with WidgetsBindingObserver {
           }
 
           if (state is AuthenticationErrorState) {
-            return showErrorSnackBar(context, state.message.toString());
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              showErrorSnackBar(context, state.message.toString());
+            });
           }
           return Center(
             child: SizedBox(
@@ -152,25 +154,6 @@ class _AuthPageState extends State<AuthPage> with WidgetsBindingObserver {
                   color: Theme.of(context).primaryColorDark),
             ),
           );
-        },
-        listener: (context, state) {
-          if (state is AuthenticatedState) {
-            Center(
-                child: SizedBox(
-                    height: 70,
-                    width: 70,
-                    child: CheckMark(
-                        inactiveColor: Theme.of(context).primaryColorDark,
-                        active: true,
-                        duration: const Duration(milliseconds: 700),
-                        onEnd: () =>
-                            Future.delayed(const Duration(milliseconds: 200))
-                                .whenComplete(() {
-                              AutoRouter.of(context).replaceAll([
-                                const MainRouter(children: [MainRoute()])
-                              ]);
-                            }))));
-          }
         },
       ),
     );

@@ -7,7 +7,6 @@ showErrorSnackBar(BuildContext context, String message) {
           borderRadius: BorderRadius.all(Radius.circular(20))),
       backgroundColor: Theme.of(context).colorScheme.error,
       content: SizedBox(
-        height: 50,
         child: Center(
           child: Text(
             message,

@@ -12,15 +12,15 @@ import 'dart:developer' as developer;
 
 import 'package:test_task/feature/domain/entity/products_entity.dart';
 
-const address = 'https://dummyjson.com/products';
-
 class RemoteDataSource implements IRemoteDataSource {
   final FirebaseAuth auth;
   final Dio dio;
+  final String _address;
   String _verificationId;
 
   RemoteDataSource({required this.auth, required this.dio})
-      : _verificationId = '';
+      : _verificationId = '',
+        _address = 'https://dummyjson.com/products';
 
   @override
   Future<void> sendEmailLink({required String email}) async {
@@ -33,7 +33,6 @@ class RemoteDataSource implements IRemoteDataSource {
       await auth.sendSignInLinkToEmail(
           email: email, actionCodeSettings: actionCodeSettings);
     } on Exception catch (e) {
-      developer.log(e.toString());
       AuthException(message: e.toString());
     }
   }
@@ -66,8 +65,7 @@ class RemoteDataSource implements IRemoteDataSource {
       } else {
         developer.log("Exception: invalid dynamic link!");
         return Left(AuthException(
-            message:
-                "Ошибка авторизации!\nПопробуйте еще раз или воспользуйтесь другим методом!"));
+            message: "Ошибка авторизации!\nДинамическая ссылка не валидна!!"));
       }
 
       /// Пробуем авторизоваться в Firebase и затем проверяем, что [UserCredential.user] != null
@@ -87,8 +85,7 @@ class RemoteDataSource implements IRemoteDataSource {
             message:
                 "Ошибка авторизации!\nПопробуйте еще раз или воспользуйтесь другим методом!"));
       }
-    } on Exception catch (e) {
-      developer.log(e.toString());
+    } catch (e) {
       return Left(AuthException(
           message:
               "Ошибка авторизации!\nПопробуйте еще раз или воспользуйтесь другим методом!"));
@@ -134,7 +131,7 @@ class RemoteDataSource implements IRemoteDataSource {
 
   @override
   Future<List<ProductEntity>> getProducts() async {
-    final response = await dio.get(address);
+    final response = await dio.get(_address);
     final json = jsonDecode(response.toString());
     final List<ProductEntity> products = [];
     json['products'].forEach((i) => products.add(ProductModel.fromJson(i)));

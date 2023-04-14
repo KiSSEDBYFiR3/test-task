@@ -5,7 +5,7 @@ Widget productListTile(
     {required BuildContext context, required ProductEntity product}) {
   return SizedBox(
     height: 175,
-    width: 270,
+    width: MediaQuery.of(context).size.width,
     child: Card(
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -24,7 +24,7 @@ Widget productListTile(
               )),
           SizedBox(
             height: 170,
-            width: 190,
+            width: MediaQuery.of(context).size.width - 200,
             child: Padding(
               padding: const EdgeInsets.only(top: 20, left: 5),
               child: Column(
@@ -70,13 +70,11 @@ Widget productListTile(
                   const SizedBox(
                     height: 20,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
+                  Expanded(
                     child: Row(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                              top: 0, left: 10, right: 10),
+                          padding: const EdgeInsets.only(left: 5),
                           child: Text(
                             "${product.price} \$",
                             style: const TextStyle(

@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_task/core/auth_services/auth_response.dart';
 import 'package:test_task/feature/domain/usecases/authenticate_by_biometrics_usecase.dart';
 import 'package:test_task/feature/domain/usecases/authenticate_by_dynamic_link_usecase.dart';
 import 'package:test_task/feature/domain/usecases/send_email_link_usecase.dart';
@@ -35,14 +34,13 @@ class AuthCubit extends Cubit<AuthCubitState> {
   Future<void> authenticateByDynamicLinkCredential() async {
     final authResponse = await authenticateByDynamicLink.call();
     developer.log(authResponse.toString());
-    if (authResponse is AuthResponse) {
-      emit(AuthenticatedState());
-      developer.log(state.toString());
-    } else {
-      developer.log(state.toString());
-      emit(const AuthenticationErrorState(
-          "Ошибка авторизации!\nПопробуйте еще раз или воспользуйтесь другим методом!"));
-    }
+
+    Future.delayed(const Duration(milliseconds: 1200))
+        .whenComplete(() => authResponse.fold((l) {
+              emit(AuthenticationErrorState(l.message.toString()));
+              Future.delayed(const Duration(seconds: 2))
+                  .whenComplete(() => emit(InitState()));
+            }, (r) => emit(AuthenticatedState())));
   }
 
   Future<void> authByBiometrics() async {
@@ -53,6 +51,8 @@ class AuthCubit extends Cubit<AuthCubitState> {
       } else {
         emit(const AuthenticationErrorState(
             "Ошибка входа данным методом!\nПроверьте настройки безопасности вашего устройства или воспользуйтесь другим методом!"));
+        Future.delayed(const Duration(seconds: 2))
+            .whenComplete(() => emit(InitState()));
       }
     });
   }
@@ -66,6 +66,8 @@ class AuthCubit extends Cubit<AuthCubitState> {
       onVerificationCompleted: (signInCredential) {},
       onVerificationFailed: (message) {
         emit(AuthenticationErrorState(message.toString()));
+        Future.delayed(const Duration(seconds: 2))
+            .whenComplete(() => emit(InitState()));
       },
     );
   }
@@ -81,6 +83,8 @@ class AuthCubit extends Cubit<AuthCubitState> {
     } on Exception catch (message) {
       developer.log(message.toString());
       emit(AuthenticationErrorState(message.toString()));
+      Future.delayed(const Duration(seconds: 2))
+          .whenComplete(() => emit(InitState()));
     }
   }
 }

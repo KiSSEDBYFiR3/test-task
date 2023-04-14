@@ -32,7 +32,7 @@ Widget buildEmailBottomSheet({
               onPressed: () {
                 if (key.currentState!.validate()) {
                   BlocProvider.of<AuthCubit>(context)
-                      .sendEmailLink(controller.text);
+                      .sendEmail(controller.text);
                   context.popRoute();
                   controller.clear();
                 }
