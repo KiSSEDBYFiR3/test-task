@@ -41,7 +41,7 @@ Dart: 2.19.6
 
 
 ### 2. Авторизация
-Для первых двух пунктов авторизации использовал Firebase (авторизация через СМС и авторизация без пароля по динамической ссылке).
+#### Для первых двух пунктов авторизации использовал Firebase (авторизация через СМС и авторизация без пароля по динамической ссылке).
 
 ![Тестовые номера телефона из панели Firebase](https://user-images.githubusercontent.com/72256017/232117717-2783e784-2763-4700-8226-b8bb04739aef.png)
 
@@ -60,14 +60,13 @@ https://user-images.githubusercontent.com/72256017/232123377-d0908cc6-ba75-46d7-
 https://user-images.githubusercontent.com/72256017/232123495-de23ca5b-df7a-420e-8504-743d1d8605a4.mp4
 
 
-Для биометрической аутентификации - [local_auth](https://pub.dev/packages/local_auth).
+Для биометрической аутентификации использовал [local_auth](https://pub.dev/packages/local_auth).
 
 
 Запись экрана с реального устройства:
 
 
 https://user-images.githubusercontent.com/72256017/232118493-289d8966-46b6-4ab7-8dea-970249b62532.mp4
-
 
 
 
