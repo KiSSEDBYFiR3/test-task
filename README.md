@@ -60,7 +60,9 @@ https://user-images.githubusercontent.com/72256017/232123377-d0908cc6-ba75-46d7-
 https://user-images.githubusercontent.com/72256017/232123495-de23ca5b-df7a-420e-8504-743d1d8605a4.mp4
 
 
-Для биометрической аутентификации использовал [local_auth](https://pub.dev/packages/local_auth).
+
+
+#### Для биометрической аутентификации использовал [local_auth](https://pub.dev/packages/local_auth).
 
 
 Запись экрана с реального устройства:
