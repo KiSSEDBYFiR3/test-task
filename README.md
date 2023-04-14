@@ -45,7 +45,9 @@ Dart: 2.19.6
 
 Тестовые номера в консоли Firebase:
 
+
 https://user-images.githubusercontent.com/72256017/232117717-2783e784-2763-4700-8226-b8bb04739aef.png
+
 
 
 Авторизация по номеру телефона:
