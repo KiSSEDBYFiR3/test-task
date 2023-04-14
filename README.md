@@ -43,16 +43,20 @@ Dart: 2.19.6
 ### 2. Авторизация
 Для первых двух пунктов авторизации использовал Firebase (авторизация через СМС и авторизация без пароля по динамической ссылке).
 
-[Тестовые номера телефона из панели Firebase](https://user-images.githubusercontent.com/72256017/232117717-2783e784-2763-4700-8226-b8bb04739aef.png)
+![Тестовые номера телефона из панели Firebase](https://user-images.githubusercontent.com/72256017/232117717-2783e784-2763-4700-8226-b8bb04739aef.png)
 
 
 Авторизация по номеру телефона:
+
+
 https://user-images.githubusercontent.com/72256017/232123377-d0908cc6-ba75-46d7-8141-ff5df9b93a6a.mp4 
 
 
 
 
 Авторизация через email (динамические ссылки):
+
+
 https://user-images.githubusercontent.com/72256017/232123495-de23ca5b-df7a-420e-8504-743d1d8605a4.mp4
 
 
@@ -60,6 +64,8 @@ https://user-images.githubusercontent.com/72256017/232123495-de23ca5b-df7a-420e-
 
 
 Запись экрана с реального устройства:
+
+
 https://user-images.githubusercontent.com/72256017/232118493-289d8966-46b6-4ab7-8dea-970249b62532.mp4
 
 
@@ -67,6 +73,8 @@ https://user-images.githubusercontent.com/72256017/232118493-289d8966-46b6-4ab7-
 
 
 Запись с экрана эмулятора:
+
+
 https://user-images.githubusercontent.com/72256017/232121938-075a26e7-a700-43a3-b4d8-c779afafc7e8.mp4
 
 
